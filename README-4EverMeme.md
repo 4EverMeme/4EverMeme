@@ -39,22 +39,15 @@ It follows the BEP-20 standard with standard transfer, approval, and balance fun
 This project is community-driven and experimental. Always do your own research before participating.
 ---
 
+---
+
 ## ✅ Smart Contract Verification
 
-The 4EverMeme (4EVM) smart contract is **verified and published** on the Binance Smart Chain (BEP-20).
+The **4EverMeme (4EVM)** smart contract is verified and published on the **Binance Smart Chain (BEP-20)**.
 
 🔗 **Contract Address:**  
-[`0xDE00bB6e97ad5D05d4f49d3949E91e165f3092Ef`](https://bscscan.com/address/0xDE00bB6e97ad5D05d4f49d3949E91e165f3092Ef)
+[`0xDE008b6e97ad5D05d4f49d3949E91e165f3092Ef`](https://bscscan.com/address/0xDE008b6e97ad5D05d4f49d3949E91e165f3092Ef#code)
 
-[![Verified on BscScan](https://img.shields.io/badge/Verified%20on-BscScan-brightgreen?logo=bscscan)](https://bscscan.com/address/0xDE00bB6e97ad5D05d4f49d3949E91e165f3092Ef)
+[![Verified on BscScan](https://img.shields.io/badge/Verified%20on-BscScan-brightgreen?logo=bscscan)](https://bscscan.com/address/0xDE008b6e97ad5D05d4f49d3949E91e165f3092Ef#code)
 
-This contract follows the **BEP-20 token standard** with full transparency for transfers, approvals, and balances.
-
----
-
-### 📜 License
-This project is released under the **MIT License**.
-
----
-
-💡 *4EverMeme (4EVM) aims to bring together blockchain innovation and meme culture — promoting creativity, transparency, and decentralization.*
+This contract follows the **BEP-20 standard** with full transparency for transfers, approvals, and balances.
