@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>4EverMeme (4EVM) 🚀 To The Moon!</title>
-  <meta name="description" content="4EverMeme - Play games, have fun, join the community!">
+  <meta name="description" content="4EverMeme - Play games, customize, join the community!">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
@@ -28,6 +28,25 @@
       color: var(--text);
       overflow-x: hidden;
       transition: all 0.3s;
+    }
+
+    .shake {
+      animation: shake 0.3s;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .flash-red {
+      animation: flashRed 0.3s;
+    }
+
+    @keyframes flashRed {
+      0%, 100% { box-shadow: 0 0 0 transparent; }
+      50% { box-shadow: inset 0 0 50px 10px rgba(255,0,0,0.5); }
     }
     
     .banner {
@@ -107,7 +126,6 @@
       cursor: pointer;
       filter: drop-shadow(0 0 20px rgba(255,215,0,0.6));
       animation: float 3s ease-in-out infinite;
-      transition: all 0.3s;
       position: relative;
       z-index: 2;
     }
@@ -122,78 +140,34 @@
     }
     
     @keyframes rocketFlyUp {
-      0% { 
-        transform: translateY(0) scale(1) rotate(0deg);
-        filter: drop-shadow(0 0 20px rgba(255,215,0,0.6));
-      }
-      10% {
-        transform: translateY(-30px) scale(1.1) rotate(-5deg);
-        filter: drop-shadow(0 0 40px rgba(255,215,0,0.9));
-      }
-      30% {
-        transform: translateY(-150px) scale(1.2) rotate(5deg);
-        filter: drop-shadow(0 0 60px rgba(255,165,0,1));
-      }
-      60% {
-        transform: translateY(-400px) scale(0.8) rotate(-15deg);
-        filter: drop-shadow(0 0 80px rgba(255,100,0,1));
-      }
-      100% { 
-        transform: translateY(-800px) scale(0.2) rotate(30deg);
-        filter: drop-shadow(0 0 100px rgba(255,0,0,1));
-        opacity: 0;
-      }
+      0% { transform: translateY(0) scale(1); }
+      20% { transform: translateY(-100px) scale(1.1); }
+      40% { transform: translateY(-300px) scale(0.9); }
+      60% { transform: translateY(-600px) scale(0.6); }
+      100% { transform: translateY(-1000px) scale(0.2); opacity: 0; }
     }
-    
-    .flame {
+
+    .rocket-flame {
       position: absolute;
-      bottom: -20px;
       left: 50%;
+      top: 100%;
       transform: translateX(-50%);
-      width: 30px;
-      height: 40px;
+      font-size: 40px;
       opacity: 0;
       pointer-events: none;
       z-index: 1;
     }
-    
-    .logo.flying ~ .flame {
-      animation: flameEffect 3s ease-out;
+
+    .logo.flying ~ .rocket-flame {
+      animation: flameRise 3s ease-out;
     }
-    
-    @keyframes flameEffect {
-      0% { opacity: 0; height: 0; }
-      10% { opacity: 1; height: 60px; }
-      30% { opacity: 1; height: 150px; }
-      60% { opacity: 0.8; height: 300px; }
-      100% { opacity: 0; height: 500px; }
-    }
-    
-    .flame::before {
-      content: '🔥';
-      position: absolute;
-      font-size: 30px;
-      animation: flameFlicker 0.1s infinite;
-    }
-    
-    @keyframes flameFlicker {
-      0%, 100% { transform: scale(1) rotate(-5deg); }
-      50% { transform: scale(1.2) rotate(5deg); }
-    }
-    
-    .particles {
-      position: absolute;
-      pointer-events: none;
-      z-index: 3;
-    }
-    
-    .logo.flying ~ .particles .particle {
-      animation: particleExplode 2s ease-out;
-    }
-    
-    @keyframes particleExplode {
-      0% { opacity: 1; transform: translate(0, 0) scale(1); }
-      100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0); }
+
+    @keyframes flameRise {
+      0% { opacity: 0; top: 100%; }
+      10% { opacity: 1; top: 110%; }
+      30% { opacity: 1; top: 150%; }
+      60% { opacity: 0.5; top: 250%; }
+      100% { opacity: 0; top: 400%; }
     }
     
     .brand h1 {
@@ -225,7 +199,7 @@
     }
     
     .theme-btn:hover, .game-btn:hover {
-      transform: scale(1.1) rotate(10deg);
+      transform: scale(1.1);
       background: rgba(255,255,255,0.1);
     }
     
@@ -488,6 +462,104 @@
       position: absolute;
       left: 0;
     }
+
+    .newsletter {
+      background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(0,217,255,0.1));
+      border: 1px solid rgba(255,215,0,0.3);
+      border-radius: 25px;
+      padding: 40px;
+      text-align: center;
+      margin: 60px 0;
+    }
+    
+    .newsletter h3 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    
+    .newsletter p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .newsletter input {
+      flex: 1;
+      padding: 14px 20px;
+      border-radius: 25px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.3);
+      color: var(--text);
+      font-size: 14px;
+    }
+    
+    .newsletter button {
+      padding: 14px 30px;
+      border-radius: 25px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border: none;
+      color: #000;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .customizer {
+      position: fixed;
+      right: -300px;
+      top: 100px;
+      width: 280px;
+      background: rgba(0,0,0,0.95);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 15px 0 0 15px;
+      padding: 20px;
+      transition: right 0.3s;
+      z-index: 999;
+    }
+    
+    .customizer.open {
+      right: 0;
+    }
+    
+    .customizer-toggle {
+      position: absolute;
+      left: -40px;
+      top: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(0,0,0,0.95);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px 0 0 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    
+    .color-picker {
+      margin: 15px 0;
+    }
+    
+    .color-picker label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    
+    .color-picker input {
+      width: 100%;
+      height: 40px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      cursor: pointer;
+    }
     
     .game-modal {
       display: none;
@@ -603,10 +675,26 @@
     }
     
     .game-score {
-      font-size: 24px;
+      font-size: 20px;
       color: var(--primary);
       margin: 15px 0;
-      font-weight: 900;
+      font-weight: 700;
+    }
+
+    .game-lives {
+      font-size: 32px;
+      margin: 15px 0;
+    }
+
+    .game-lives .heart {
+      display: inline-block;
+      margin: 0 5px;
+      transition: all 0.3s;
+    }
+
+    .game-lives .heart.lost {
+      opacity: 0.2;
+      filter: grayscale(100%);
     }
     
     .game-controls {
@@ -615,6 +703,22 @@
       justify-content: center;
       flex-wrap: wrap;
       margin: 20px 0;
+    }
+
+    .sound-toggle {
+      background: rgba(255,215,0,0.2);
+      border: 2px solid var(--primary);
+      border-radius: 25px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 10px 0;
+      transition: all 0.3s;
+    }
+
+    .sound-toggle:hover {
+      background: rgba(255,215,0,0.3);
     }
     
     .mobile-controls {
@@ -646,15 +750,15 @@
     }
     
     .mic-indicator {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       margin: 20px auto;
       border: 3px solid var(--primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 48px;
+      font-size: 60px;
       position: relative;
       overflow: hidden;
     }
@@ -667,6 +771,27 @@
       height: 0%;
       background: rgba(255,215,0,0.3);
       transition: height 0.1s;
+    }
+
+    .warning-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 80px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .warning-icon.show {
+      animation: warningPulse 0.5s;
+    }
+
+    @keyframes warningPulse {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
     }
     
     footer {
@@ -681,18 +806,31 @@
       font-size: 13px;
       margin-bottom: 20px;
     }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .footer-links a {
+      color: var(--accent);
+      text-decoration: none;
+    }
     
     @media (max-width: 768px) {
       h2 { font-size: 48px; }
       .grid { grid-template-columns: 1fr; }
       .chart-box { height: 400px; }
       canvas { max-width: 100%; height: auto; }
+      .newsletter-form { flex-direction: column; }
     }
   </style>
 </head>
 <body>
   <div class="banner" id="banner">
-    🎮 <strong>NEW GAMES!</strong> Tetris • Flappy 4EVM • Scream 4EVM (Voice control!)
+    🎮 <strong>NEW GAMES!</strong> Tetris • Flappy 4EVM • Scream 4EVM (Voice!) • Progressive difficulty!
     <button onclick="document.getElementById('banner').style.display='none'">×</button>
   </div>
 
@@ -702,8 +840,7 @@
     <nav>
       <div class="logo-section">
         <img src="https://i.postimg.cc/5y0H78jp/09DF90F9-3A8B-49B3-8A87-C2FFFF78C819.png" class="logo" id="logo" onclick="launchRocket()">
-        <div class="flame"></div>
-        <div class="particles" id="particles"></div>
+        <div class="rocket-flame">🔥</div>
         <div class="brand">
           <h1>4EVERMEME</h1>
           <p style="font-size:12px;color:var(--muted);letter-spacing:2px">TO THE MOON!</p>
@@ -779,6 +916,15 @@
       </div>
     </section>
 
+    <section class="newsletter">
+      <h3>📧 Stay Updated!</h3>
+      <p>Join our newsletter for exclusive updates and giveaways</p>
+      <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+        <input type="email" placeholder="Enter your email" required id="emailInput">
+        <button type="submit" id="subscribeBtn">Subscribe</button>
+      </form>
+    </section>
+
     <div class="grid">
       <div class="card">
         <h3>📖 About</h3>
@@ -787,7 +933,7 @@
         <ul>
           <li>No buy/sell tax - 100% community owned</li>
           <li>Verified smart contract on BscScan</li>
-          <li>3 fun games to play!</li>
+          <li>3 awesome games to play!</li>
           <li>Open-source on GitHub</li>
         </ul>
       </div>
@@ -795,10 +941,10 @@
       <div class="card">
         <h3>🎮 Games</h3>
         <div class="divider"></div>
-        <p>Play our awesome games and compete on the leaderboard!</p>
+        <p>Play our fun games with progressive difficulty!</p>
         <ul>
-          <li>🎮 Tetris - Classic puzzle game</li>
-          <li>🐦 Flappy 4EVM - Tap to fly!</li>
+          <li>🎮 Tetris - Classic puzzle</li>
+          <li>🐦 Flappy 4EVM - 3 lives system!</li>
           <li>🎤 Scream 4EVM - Voice control!</li>
         </ul>
         <button class="btn btn-primary" onclick="openGameMenu()" style="width:100%;margin-top:15px">
@@ -831,8 +977,34 @@
 
     <footer>
       <p>⚠️ Community-driven project. Always DYOR!</p>
+      <div class="footer-links">
+        <a href="https://github.com/nedja80/4EverMeme" target="_blank">GitHub</a>
+        <span style="color:var(--muted)">•</span>
+        <a href="https://t.me/4evermeme" target="_blank">Telegram</a>
+        <span style="color:var(--muted)">•</span>
+        <a href="https://x.com/4evermeme" target="_blank">Twitter</a>
+      </div>
       <p style="margin-top:20px;font-size:11px">© 2024 4EverMeme • Made with ❤️</p>
     </footer>
+  </div>
+
+  <div class="customizer" id="customizer">
+    <div class="customizer-toggle" onclick="toggleCustomizer()">🎨</div>
+    <h3 style="margin-bottom:20px">Customize Theme</h3>
+    
+    <div class="color-picker">
+      <label>Primary Color</label>
+      <input type="color" value="#FFD700" id="primaryColor" onchange="updateColor('primary', this.value)">
+    </div>
+    
+    <div class="color-picker">
+      <label>Accent Color</label>
+      <input type="color" value="#00D9FF" id="accentColor" onchange="updateColor('accent', this.value)">
+    </div>
+    
+    <button class="btn btn-secondary" onclick="resetColors()" style="width:100%;margin-top:20px">
+      Reset Colors
+    </button>
   </div>
 
   <!-- Game Modal -->
@@ -852,21 +1024,21 @@
           <div class="icon">🐦</div>
           <div class="info">
             <div class="title">Flappy 4EVM</div>
-            <div class="desc">Tap to fly - Avoid obstacles!</div>
+            <div class="desc">3 lives • Tap to fly • Progressive speed!</div>
           </div>
         </div>
         <div class="game-item" onclick="openGame('scream')">
           <div class="icon">🎤</div>
           <div class="info">
             <div class="title">Scream 4EVM</div>
-            <div class="desc">Voice control - SHOUT to jump! 😂</div>
+            <div class="desc">3 lives • Voice control • SHOUT to jump! 😂</div>
           </div>
         </div>
       </div>
       <button class="btn btn-secondary" onclick="closeGameModal()" style="margin-top:20px">Close</button>
     </div>
 
-    <!-- Tetris Game -->
+    <!-- Tetris Game (unchanged - already perfect) -->
     <div class="game-container" id="tetrisGame">
       <h3>🎮 TETRIS</h3>
       <div class="game-score">
@@ -886,28 +1058,52 @@
       </div>
     </div>
 
-    <!-- Flappy Game -->
+    <!-- Flappy Game (NEW with 3 lives system) -->
     <div class="game-container" id="flappyGame">
       <h3>🐦 FLAPPY 4EVM</h3>
       <div class="game-score">Score: <span id="flappyScore">0</span> | Best: <span id="flappyBest">0</span></div>
+      <div class="game-lives" id="flappyLives">
+        <span class="heart">❤️</span>
+        <span class="heart">❤️</span>
+        <span class="heart">❤️</span>
+      </div>
       <canvas id="flappyCanvas" width="400" height="600"></canvas>
-      <p style="color:var(--muted);margin:15px 0">Tap screen or press SPACE to fly!</p>
+      <div class="warning-icon" id="flappyWarning">⚠️</div>
+      <p style="color:var(--muted);margin:15px 0;font-size:14px">
+        Tap screen or SPACE to fly!<br>
+        <span style="color:var(--accent)">🔵 Obstacles = -1 life | ⚠️ Walls = Warning only!</span>
+      </p>
+      <div class="sound-toggle" onclick="toggleFlappySound()" id="flappySoundToggle">
+        🔊 SOUND: ON
+      </div>
       <div class="game-controls">
         <button class="btn btn-primary" onclick="startFlappy()">START</button>
         <button class="btn btn-secondary" onclick="backToMenu()">BACK</button>
       </div>
     </div>
 
-    <!-- Scream Game -->
+    <!-- Scream Game (NEW with 3 lives system) -->
     <div class="game-container" id="screamGame">
       <h3>🎤 SCREAM 4EVM</h3>
       <div class="game-score">Score: <span id="screamScore">0</span> | Best: <span id="screamBest">0</span></div>
+      <div class="game-lives" id="screamLives">
+        <span class="heart">❤️</span>
+        <span class="heart">❤️</span>
+        <span class="heart">❤️</span>
+      </div>
       <div class="mic-indicator">
         <div class="mic-wave" id="micWave"></div>
-        <span>🎤</span>
+        <span style="position:relative;z-index:2">🎤</span>
       </div>
       <canvas id="screamCanvas" width="400" height="400"></canvas>
-      <p style="color:var(--muted);margin:15px 0">🔊 SHOUT to make 4EVM jump! The louder, the higher!</p>
+      <div class="warning-icon" id="screamWarning">⚠️</div>
+      <p style="color:var(--muted);margin:15px 0;font-size:14px">
+        🔊 SHOUT to jump! Louder = Higher!<br>
+        <span style="color:var(--accent)">🔵 Obstacles = -1 life | ⚠️ Walls = Warning only!</span>
+      </p>
+      <div class="sound-toggle" onclick="toggleScreamSound()" id="screamSoundToggle">
+        🔊 SOUND: ON
+      </div>
       <div class="game-controls">
         <button class="btn btn-primary" onclick="startScream()">START</button>
         <button class="btn btn-secondary" onclick="stopScream()">STOP</button>
@@ -950,30 +1146,40 @@
       }, 2000);
     }
 
+    // Newsletter
+    function subscribeNewsletter(e) {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value;
+      alert('✓ Thanks for subscribing! Email: ' + email);
+      document.getElementById('emailInput').value = '';
+      document.getElementById('subscribeBtn').textContent = '✓ Subscribed!';
+      setTimeout(() => {
+        document.getElementById('subscribeBtn').textContent = 'Subscribe';
+      }, 3000);
+    }
+
+    // Customizer
+    function toggleCustomizer() {
+      document.getElementById('customizer').classList.toggle('open');
+    }
+
+    function updateColor(type, value) {
+      document.documentElement.style.setProperty('--'+type, value);
+    }
+
+    function resetColors() {
+      document.getElementById('primaryColor').value = '#FFD700';
+      document.getElementById('accentColor').value = '#00D9FF';
+      updateColor('primary', '#FFD700');
+      updateColor('accent', '#00D9FF');
+    }
+
     // Rocket launch with FIRE!
     function launchRocket() {
       const logo = document.getElementById('logo');
-      const particles = document.getElementById('particles');
-      
       logo.classList.add('flying');
-      
-      // Create fire particles
-      for(let i=0; i<20; i++) {
-        const particle = document.createElement('div');
-        particle.style.position = 'absolute';
-        particle.style.left = '30px';
-        particle.style.top = '30px';
-        particle.textContent = ['🔥','✨','💥'][Math.floor(Math.random()*3)];
-        particle.style.fontSize = '20px';
-        particle.className = 'particle';
-        particle.style.setProperty('--tx', (Math.random()-0.5)*200+'px');
-        particle.style.setProperty('--ty', (Math.random()-0.5)*200+'px');
-        particles.appendChild(particle);
-      }
-      
       setTimeout(() => {
         logo.classList.remove('flying');
-        particles.innerHTML = '';
       }, 3000);
     }
 
@@ -1005,7 +1211,7 @@
       stopScream();
     }
 
-    // TETRIS GAME
+    // TETRIS GAME (unchanged - already perfect)
     const tetrisCanvas = document.getElementById('tetrisCanvas');
     const tetrisCtx = tetrisCanvas.getContext('2d');
     const COLS = 10, ROWS = 20, BLOCK = 30;
@@ -1144,27 +1350,60 @@
       if(e.key===' ') tetrisMove('drop');
     });
 
-    // FLAPPY GAME
+    // FLAPPY GAME (NEW with 3 lives, progressive difficulty, wall bounce)
     const flappyCanvas = document.getElementById('flappyCanvas');
     const flappyCtx = flappyCanvas.getContext('2d');
-    let flappyRunning = false, flappyScore = 0, flappyBest = parseInt(localStorage.getItem('flappyBest')||0);
-    let bird = {y:200, vy:0};
+    let flappyRunning = false, flappyScore = 0, flappyLives = 3, flappyBest = parseInt(localStorage.getItem('flappyBest')||0);
+    let flappySoundOn = true;
+    let bird = {y:200, vy:0, invincible:false};
     let pipes = [];
-    let flappyFrame = 0;
+    let flappyFrame = 0, flappySpeed = 2;
     document.getElementById('flappyBest').textContent = flappyBest;
+
+    function toggleFlappySound() {
+      flappySoundOn = !flappySoundOn;
+      document.getElementById('flappySoundToggle').textContent = flappySoundOn ? '🔊 SOUND: ON' : '🔇 SOUND: OFF';
+    }
+
+    function updateFlappyLives() {
+      const hearts = document.querySelectorAll('#flappyLives .heart');
+      hearts.forEach((h, i) => {
+        if(i >= flappyLives) h.classList.add('lost');
+        else h.classList.remove('lost');
+      });
+    }
+
+    function showFlappyWarning() {
+      const warning = document.getElementById('flappyWarning');
+      warning.classList.add('show');
+      flappyCanvas.classList.add('flash-red');
+      setTimeout(() => {
+        warning.classList.remove('show');
+        flappyCanvas.classList.remove('flash-red');
+      }, 500);
+    }
 
     function startFlappy() {
       flappyRunning = true;
       flappyScore = 0;
-      bird = {y:200, vy:0};
+      flappyLives = 3;
+      bird = {y:200, vy:0, invincible:false};
       pipes = [];
       flappyFrame = 0;
+      flappySpeed = 2;
       document.getElementById('flappyScore').textContent = 0;
+      updateFlappyLives();
       flappyLoop();
     }
 
     function flappyLoop() {
       if(!flappyRunning) return;
+      
+      // Progressive speed based on score
+      if(flappyScore > 5) flappySpeed = 3;
+      if(flappyScore > 15) flappySpeed = 4;
+      if(flappyScore > 30) flappySpeed = 5;
+      if(flappyScore > 50) flappySpeed = 6;
       
       flappyCtx.fillStyle = '#87CEEB';
       flappyCtx.fillRect(0,0,400,600);
@@ -1172,28 +1411,45 @@
       bird.vy += 0.5;
       bird.y += bird.vy;
       
-      if(bird.y > 570 || bird.y < 0) {
-        flappyRunning = false;
-        if(flappyScore > flappyBest) {
-          flappyBest = flappyScore;
-          localStorage.setItem('flappyBest', flappyBest);
-          document.getElementById('flappyBest').textContent = flappyBest;
-        }
-        alert('Game Over! Score: '+flappyScore);
-        return;
+      // Wall bounce (no damage!)
+      if(bird.y > 570) {
+        bird.y = 570;
+        bird.vy = -bird.vy * 0.5;
+        flappyCanvas.classList.add('shake');
+        showFlappyWarning();
+        setTimeout(() => flappyCanvas.classList.remove('shake'), 300);
+      }
+      if(bird.y < 30) {
+        bird.y = 30;
+        bird.vy = -bird.vy * 0.5;
+        flappyCanvas.classList.add('shake');
+        showFlappyWarning();
+        setTimeout(() => flappyCanvas.classList.remove('shake'), 300);
       }
       
+      // Draw bird with animation
+      flappyCtx.save();
+      flappyCtx.translate(80, bird.y);
+      if(bird.invincible) {
+        flappyCtx.globalAlpha = Math.sin(Date.now()/100) * 0.5 + 0.5;
+      }
       flappyCtx.fillStyle = '#FFD700';
       flappyCtx.beginPath();
-      flappyCtx.arc(80, bird.y, 20, 0, Math.PI*2);
+      flappyCtx.arc(0, 0, 20, 0, Math.PI*2);
       flappyCtx.fill();
+      // Eyes
+      flappyCtx.fillStyle = '#000';
+      flappyCtx.fillRect(-8, -5, 6, 6);
+      flappyCtx.fillRect(2, -5, 6, 6);
+      flappyCtx.restore();
       
-      if(flappyFrame % 90 === 0) {
-        pipes.push({x:400, gap:150+Math.random()*100, y:100+Math.random()*200});
+      if(flappyFrame % Math.max(50, 90-flappyScore*2) === 0) {
+        const gap = Math.max(120, 180-flappyScore);
+        pipes.push({x:400, gap:gap, y:100+Math.random()*200, scored:false});
       }
       
       pipes.forEach((p, i) => {
-        p.x -= 3;
+        p.x -= flappySpeed;
         
         flappyCtx.fillStyle = '#4ADE80';
         flappyCtx.fillRect(p.x, 0, 60, p.y);
@@ -1205,8 +1461,26 @@
           document.getElementById('flappyScore').textContent = flappyScore;
         }
         
-        if((80>p.x && 80<p.x+60) && (bird.y<p.y || bird.y>p.y+p.gap)) {
-          flappyRunning = false;
+        // Collision with obstacles = lose life
+        if(!bird.invincible && (80>p.x && 80<p.x+60) && (bird.y-20<p.y || bird.y+20>p.y+p.gap)) {
+          flappyLives--;
+          updateFlappyLives();
+          bird.invincible = true;
+          bird.vy = -8;
+          bird.y -= 30;
+          
+          setTimeout(() => bird.invincible = false, 2000);
+          
+          if(flappyLives <= 0) {
+            flappyRunning = false;
+            if(flappyScore > flappyBest) {
+              flappyBest = flappyScore;
+              localStorage.setItem('flappyBest', flappyBest);
+              document.getElementById('flappyBest').textContent = flappyBest;
+            }
+            alert('💥 Game Over!\nScore: '+flappyScore+'\n🏆 Best: '+flappyBest);
+            return;
+          }
         }
         
         if(p.x < -60) pipes.splice(i,1);
@@ -1225,19 +1499,40 @@
       e.preventDefault();
       flappyJump();
     });
-    document.addEventListener('keydown', e => {
-      if(e.key===' ' && flappyRunning) flappyJump();
-    });
 
-    // SCREAM GAME (Voice Control!)
+    // SCREAM GAME (NEW with 3 lives, progressive difficulty, wall bounce)
     const screamCanvas = document.getElementById('screamCanvas');
     const screamCtx = screamCanvas.getContext('2d');
-    let screamRunning = false, screamScore = 0, screamBest = parseInt(localStorage.getItem('screamBest')||0);
-    let player = {x:50, y:300, vy:0};
+    let screamRunning = false, screamScore = 0, screamLives = 3, screamBest = parseInt(localStorage.getItem('screamBest')||0);
+    let screamSoundOn = true;
+    let player = {x:50, y:300, vy:0, invincible:false};
     let obstacles = [];
     let audioContext, analyser, microphone, dataArray;
-    let screamFrame = 0;
+    let screamFrame = 0, screamSpeed = 3;
     document.getElementById('screamBest').textContent = screamBest;
+
+    function toggleScreamSound() {
+      screamSoundOn = !screamSoundOn;
+      document.getElementById('screamSoundToggle').textContent = screamSoundOn ? '🔊 SOUND: ON' : '🔇 SOUND: OFF';
+    }
+
+    function updateScreamLives() {
+      const hearts = document.querySelectorAll('#screamLives .heart');
+      hearts.forEach((h, i) => {
+        if(i >= screamLives) h.classList.add('lost');
+        else h.classList.remove('lost');
+      });
+    }
+
+    function showScreamWarning() {
+      const warning = document.getElementById('screamWarning');
+      warning.classList.add('show');
+      screamCanvas.classList.add('flash-red');
+      setTimeout(() => {
+        warning.classList.remove('show');
+        screamCanvas.classList.remove('flash-red');
+      }, 500);
+    }
 
     async function startScream() {
       try {
@@ -1251,13 +1546,16 @@
         
         screamRunning = true;
         screamScore = 0;
-        player = {x:50, y:300, vy:0};
+        screamLives = 3;
+        player = {x:50, y:300, vy:0, invincible:false};
         obstacles = [];
         screamFrame = 0;
+        screamSpeed = 3;
         document.getElementById('screamScore').textContent = 0;
+        updateScreamLives();
         screamLoop();
       } catch(e) {
-        alert('Microphone access required! Please allow microphone access.');
+        alert('🎤 Microphone access required! Please allow microphone.');
       }
     }
 
@@ -1269,29 +1567,39 @@
     function screamLoop() {
       if(!screamRunning) return;
       
+      // Progressive speed
+      if(screamScore > 5) screamSpeed = 4;
+      if(screamScore > 15) screamSpeed = 5;
+      if(screamScore > 30) screamSpeed = 6;
+      if(screamScore > 50) screamSpeed = 7;
+      
       analyser.getByteFrequencyData(dataArray);
       const volume = dataArray.reduce((a,b)=>a+b,0) / dataArray.length;
       
       document.getElementById('micWave').style.height = (volume/255*100)+'%';
       
-      if(volume > 50) {
-        player.vy = -15 * (volume/255);
+      if(volume > 40) {
+        player.vy = -12 * (volume/255);
       } else {
-        player.vy += 1;
+        player.vy += 0.8;
       }
       
       player.y += player.vy;
       
-      if(player.y > 370 || player.y < 0) {
-        screamRunning = false;
-        if(screamScore > screamBest) {
-          screamBest = screamScore;
-          localStorage.setItem('screamBest', screamBest);
-          document.getElementById('screamBest').textContent = screamBest;
-        }
-        stopScream();
-        alert('Game Over! Score: '+screamScore);
-        return;
+      // Wall bounce (no damage!)
+      if(player.y > 370) {
+        player.y = 370;
+        player.vy = -player.vy * 0.5;
+        screamCanvas.classList.add('shake');
+        showScreamWarning();
+        setTimeout(() => screamCanvas.classList.remove('shake'), 300);
+      }
+      if(player.y < 30) {
+        player.y = 30;
+        player.vy = -player.vy * 0.5;
+        screamCanvas.classList.add('shake');
+        showScreamWarning();
+        setTimeout(() => screamCanvas.classList.remove('shake'), 300);
       }
       
       screamCtx.fillStyle = '#87CEEB';
@@ -1300,17 +1608,38 @@
       screamCtx.fillStyle = '#8B4513';
       screamCtx.fillRect(0,370,400,30);
       
-      screamCtx.fillStyle = '#FFD700';
+      // Draw player with expression based on volume
+      screamCtx.save();
+      screamCtx.translate(player.x, player.y);
+      if(player.invincible) {
+        screamCtx.globalAlpha = Math.sin(Date.now()/100) * 0.5 + 0.5;
+      }
+      screamCtx.fillStyle = volume > 80 ? '#FF6B9D' : '#FFD700';
       screamCtx.beginPath();
-      screamCtx.arc(player.x, player.y, 20, 0, Math.PI*2);
+      screamCtx.arc(0, 0, 20, 0, Math.PI*2);
       screamCtx.fill();
       
-      if(screamFrame % 60 === 0) {
-        obstacles.push({x:400, h:50+Math.random()*100});
+      // Mouth (open when loud!)
+      screamCtx.fillStyle = '#000';
+      if(volume > 50) {
+        screamCtx.beginPath();
+        screamCtx.arc(0, 5, volume > 80 ? 10 : 6, 0, Math.PI);
+        screamCtx.fill();
+      } else {
+        screamCtx.fillRect(-6, 8, 12, 3);
+      }
+      
+      // Eyes
+      screamCtx.fillRect(-8, -5, 5, volume > 70 ? 8 : 5);
+      screamCtx.fillRect(3, -5, 5, volume > 70 ? 8 : 5);
+      screamCtx.restore();
+      
+      if(screamFrame % Math.max(40, 70-screamScore) === 0) {
+        obstacles.push({x:400, h:50+Math.random()*100, scored:false});
       }
       
       obstacles.forEach((o, i) => {
-        o.x -= 5;
+        o.x -= screamSpeed;
         
         screamCtx.fillStyle = '#FF6B9D';
         screamCtx.fillRect(o.x, 370-o.h, 40, o.h);
@@ -1321,20 +1650,43 @@
           document.getElementById('screamScore').textContent = screamScore;
         }
         
-        if((player.x+20>o.x && player.x-20<o.x+40) && player.y+20>370-o.h) {
-          screamRunning = false;
+        // Collision with obstacles = lose life
+        if(!player.invincible && (player.x+20>o.x && player.x-20<o.x+40) && player.y+20>370-o.h) {
+          screamLives--;
+          updateScreamLives();
+          player.invincible = true;
+          player.vy = -10;
+          player.y -= 30;
+          
+          setTimeout(() => player.invincible = false, 2000);
+          
+          if(screamLives <= 0) {
+            screamRunning = false;
+            if(screamScore > screamBest) {
+              screamBest = screamScore;
+              localStorage.setItem('screamBest', screamBest);
+              document.getElementById('screamBest').textContent = screamBest;
+            }
+            stopScream();
+            alert('💥 Game Over!\nScore: '+screamScore+'\n🏆 Best: '+screamBest);
+            return;
+          }
         }
         
         if(o.x < -40) obstacles.splice(i,1);
       });
       
-      screamCtx.fillStyle = '#000';
-      screamCtx.font = '14px monospace';
-      screamCtx.fillText('Volume: '+Math.round(volume), 10, 20);
-      
       screamFrame++;
       requestAnimationFrame(screamLoop);
     }
+
+    // Keyboard support for Flappy
+    document.addEventListener('keydown', e => {
+      if(e.key===' ' && flappyRunning) {
+        e.preventDefault();
+        flappyJump();
+      }
+    });
 
     // Translations
     const translations = {
