@@ -72,17 +72,6 @@
 | 💻 **GitHub** | https://github.com/nedja80/4EverMeme |
 | 🔍 **BscScan** | [View Contract](https://bscscan.com/token/0xDE008b6e97ad5D05D4f49D3949E91E165f3092Ef) |
 | 🥞 **PancakeSwap** | [Buy 4EVM](https://pancakeswap.finance/swap?outputCurrency=0xDE008b6e97ad5D05D4f49D3949E91E165f3092Ef&chain=bsc) |
-
----
-
-## 👤 Project Contact
-
-| Info | Details |
-|------|---------|
-| **Developer** | Nedja80 |
-| **Email** | 4evermeme.official@gmail.com |
-| **GitHub** | [@nedja80](https://github.com/nedja80) |
-
 ---
 
 ## 📜 Smart Contract
