@@ -66,16 +66,6 @@
 
 ---
 
-## 👤 Project Contact
-
-| Info | Details |
-|------|---------|
-| **Developer** |4EverMeme|
-| **Email** | 4evermeme.official@gmail.com |
-| **GitHub** | 4EverMeme |
-
----
-
 ## 📜 Smart Contract
 
 The 4EverMeme smart contract is fully verified and follows the BEP-20 standard:
